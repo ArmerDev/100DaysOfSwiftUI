@@ -128,7 +128,7 @@ heights["Yao Ming"] = 229
 heights["Shaquille O'Neal"] = 216
 heights["LeBron James"] = 206
 
-// Note - You can not have multiples of the same key, afterall, they are meant to be unique so you can find things. If you try to create a new dictionary entry using the same key as one thats already entered, you will override the original.
+// Note - You can not have multiples of the same key, after all, they are meant to be unique so you can find things. If you try to create a new dictionary entry using the same key as one thats already entered, you will override the original.
 
 
 //Below shows how you can add into the dictionary - note how this is different to arrays where you'd have to do .append or sets with .insert
@@ -139,7 +139,7 @@ archEnemies["Batman"] = "Penguin"
 
 print(archEnemies["Batman"])
 
-// Dictionaries have functinality like arrays such as count and removeAll
+// Dictionaries have functionality like arrays such as count and removeAll
 
 
 
@@ -152,7 +152,7 @@ let actors = Set(["Denzel Washington", "Tom Cruise", "Nicolas Cage", "Samuel L J
 print(actors)
 
 //you could also create on like this
-let setOfBlogCategories: Set<String> = ["Swift", "Debugging", "Xcode", "Workflow", "Optimization"]
+let setOfBlogCategories: Set<String> = ["Swift", "Debugging", "Xcode", "Workflow", "Optimisation"]
 
 //Adding items for sets is different to arrays. We don't append, we insert.
 var actors2 = Set<String>()
@@ -163,8 +163,8 @@ actors2.insert("Samuel L Jackson")
 
 print(actors2)
 
-// Sets don't preseve the order when we enter them, but they have the advantage of storing their data in a highly optimised order which makes it very very fast to locate items.
-//If you had a thousand films, and you wanted to search to see if "Batman Begins" was there, an array would have to search one by one through each element to check if the film is there, which takes time. With Sets, its basically instantaneos, you'd struggle to measure the time meaningfully, even with 10 million items in the set.
+// Sets don't preserve the order when we enter them, but they have the advantage of storing their data in a highly optimised order which makes it very very fast to locate items.
+//If you had a thousand films, and you wanted to search to see if "Batman Begins" was there, an array would have to search one by one through each element to check if the film is there, which takes time. With Sets, its basically instantaneous, you'd struggle to measure the time meaningfully, even with 10 million items in the set.
 
 // You can use contains, count, and sorted on sets - with sorted, you'll get back a stored array containing the sets items'
 
@@ -172,7 +172,7 @@ print(actors2)
 // ENUMS
 // short for enumeration - is a set of named values that we can create and use in our code.
 // Enums help us prevent mistakes and make it easier to write code
-// Swift stores enums in a highly optimsed way, which is much more efficient and faster than creating a string and storing it.
+// Swift stores enums in a highly optimised way, which is much more efficient and faster than creating a string and storing it.
 enum Weekdays {
     case monday
     case tuesday
@@ -181,7 +181,7 @@ enum Weekdays {
     case friday
 }
 
-// you can also write case once and seperate cases with commas
+// you can also write case once and separate cases with commas
 
 enum Weather {
     case rain, sun, wind, cloud
@@ -191,7 +191,7 @@ var day = Weekdays.monday
 day = Weekdays.friday
 day = Weekdays.thursday
 
-//when you assign a value to variable or contant, its data type becomes fixed. So for enums it means we can skip the name after the first assignment, like below
+//when you assign a value to variable or constant, its data type becomes fixed. So for enums it means we can skip the name after the first assignment, like below
 
 var todaysWeather = Weather.rain
 todaysWeather = .sun

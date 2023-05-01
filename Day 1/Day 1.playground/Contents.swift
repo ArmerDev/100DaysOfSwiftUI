@@ -21,9 +21,9 @@ let managerName = "Michael Scott"
 let dogBreed = "Samoyed"
 let meaningOfLife = "How many roads must a man walk down?"
 
-//Try to prefer constants over variables
-//Gives swift the chance to optimise code better
-//Allows swift to stop you changing values by accident
+// Try to prefer constants over variables
+// as it gives Swift the chance to optimise code better.
+// It also allows Swift to stop you changing values by accident.
 
 
 let actor = "Denzel Washington"
@@ -43,13 +43,13 @@ print(filename.hasSuffix(".jpg"))
 
 print(actor.uppercased())
 
-//How to store whole numbers
+// How to store whole numbers
 
 let score = 10
 let reallyBig = 100_000_000
-//switft ignores the underscores, it just makes it easier for humans to read.
+// Swift ignores the underscores, it just makes it easier for humans to read.
 let otherReallyBig = 1_00____00___00_00
-//this is also valid, although it isn't easier for humans to read.
+// This is also valid, although it isn't easier for humans to read.
 
 let lowerScore = score - 2
 let higherScore = score + 10
@@ -92,7 +92,7 @@ rating *= 2
 print(rating)
 
 
-//CGFloat and Doubles can be used interchangably. If you come across CGFloat, just think Double
+// CGFloat and Doubles can be used interchangeably. If you come across CGFloat, just think Double
 
 
 //-------
@@ -113,13 +113,13 @@ let secondPart = "world!"
 let phrase = firstPart + secondPart // the plus here is different to adding two integers together, for example. Thats because of operator overload (like function overload), which allows it to be used to concatenate multiple strings together when working with strings, and to add numbers together using addition.
 print(phrase)
 
-// swift has to add one string to the other before moving on to the next one. It will join the first two strings, then add the third, and so on. This is very wasteful. Its ok for small things, but you wouldn't want to use it much
+// Swift has to add one string to the other before moving on to the next one. It will join the first two strings, then add the third, and so on. This is very wasteful. Its ok for small things, but you wouldn't want to use it much
 
 //Instead, use string interpolation
 let name2 = "Taylor"
 let age = 24
 let message = "Hello, my name is \(name2), and I'm \(age) years old."
-//string interpolation is more efficient that adding strings one by one, but it also allows you to do other things such as use an integer in a string - you can even do calculations inside string interpolation. Swift is capable of placing any kind of data inside string interpolation. The result might not always be useful, but for all of Swift’s basic types – strings, integers, Booleans, etc – the results are great.
+// string interpolation is more efficient that adding strings one by one, but it also allows you to do other things such as use an integer in a string - you can even do calculations inside string interpolation. Swift is capable of placing any kind of data inside string interpolation. The result might not always be useful, but for all of Swift’s basic types – strings, integers, Booleans, etc – the results are great.
 
 
 let temperatureInCelsius = 10.0
