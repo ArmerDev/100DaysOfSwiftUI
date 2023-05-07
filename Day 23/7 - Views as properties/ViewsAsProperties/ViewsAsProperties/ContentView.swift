@@ -51,8 +51,22 @@ struct ContentView2: View {
  However, you can create computed properties if you want, like this:
  */
 
-var motto1: some View {
-    Text("Draco dormiens")
+struct ContentView3: View {
+    
+    var motto1: some View {
+        Text("Draco dormiens")
+    }
+    
+    let motto2 = Text("nunquam titillandus")
+
+    var body: some View {
+        VStack {
+            motto1
+                .foregroundColor(.red)
+            motto2
+                .foregroundColor(.blue)
+        }
+    }
 }
 
 /*
@@ -97,5 +111,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
         ContentView2()
             .previewDisplayName("ContentView 2")
+        ContentView3()
+            .previewDisplayName("ContentView 3")
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct ViewsAsPropertiesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView2()
+            ContentView3()
         }
     }
 }
