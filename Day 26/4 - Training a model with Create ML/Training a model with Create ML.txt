@@ -1,0 +1,48 @@
+-- Training a model with Create ML -- 
+
+
+
+
+On-device machine learning went from “extremely hard to do” to “quite possible, and surprisingly powerful” in iOS 11, all thanks to one Apple framework: Core ML. A year later, Apple introduced a second framework called Create ML, which added “easy to do” to the list, and then a second year later Apple introduced a Create ML app that made the whole process drag and drop. As a result of all this work, it’s now within the reach of anyone to add machine learning to their app.
+
+Core ML is capable of handling a variety of training tasks, such as recognizing images, sounds, and even motion, but in this instance we’re going to look at tabular regression. That’s a fancy name, which is common in machine learning, but all it really means is that we can throw a load of spreadsheet-like data at Create ML and ask it to figure out the relationship between various values.
+
+Machine learning is done in two steps: we train the model, then we ask the model to make predictions. Training is the process of the computer looking at all our data to figure out the relationship between all the values we have, and in large data sets it can take a long time – easily hours, potentially much longer. Prediction is done on device: we feed it the trained model, and it will use previous results to make estimates about new data.
+
+Let’s start the training process now: please open the Create ML app on your Mac. If you don’t know where this is, you can launch it from Xcode by going to the Xcode menu and choosing Open Developer Tool > Create ML.
+
+The first thing the Create ML app will do is ask you to create a project or open a previous one – please click New Document to get started. You’ll see there are lots of templates to choose from, but if you scroll down to the bottom you’ll see Tabular Regression; please choose that and press Next. For the project name please enter BetterRest, then press Next, select your desktop, then press Create.
+
+This is where Create ML can seem a little tricky at first, because you’ll see a screen with quite a few options. Don’t worry, though – once I walk you through it isn’t so hard.
+
+The first step is to provide Create ML with some training data. This is the raw statistics for it to look at, which in our case consists of four values: when someone wanted to wake up, how much sleep they thought they liked to have, how much coffee they drink per day, and how much sleep they actually need.
+
+I’ve provided this data for you in BetterRest.csv, which is in the project files for this project. This is a comma-separated values data set that Create ML can work with, and our first job is to import that.
+
+So, in Create ML look under Data and select “Select…” under the Training Data title. When you press “Select…” again it will open a file selection window, and you should choose BetterRest.csv.
+
+Important: This CSV file contains sample data for the purpose of this project, and should not be used for actual health-related work.
+
+The next job is to decide the target, which is the value we want the computer to learn to predict, and the features, which are the values we want the computer to inspect in order to predict the target. For example, if we chose how much sleep someone thought they needed and how much sleep they actually needed as features, we could train the computer to predict how much coffee they drink.
+
+In this instance, I’d like you to choose “actualSleep” for the target, which means we want the computer to learn how to predict how much sleep they actually need. Now press Choose Features, and select all three options: wake, estimatedSleep, and coffee – we want the computer to take all three of those into account when producing its predictions.
+
+Below the Select Features button is a dropdown button for the algorithm, and there are five options: Automatic, Random Forest, Boosted Tree, Decision Tree, and Linear Regression. Each takes a different approach to analyzing data, but helpfully there is an Automatic option that attempts to choose the best algorithm automatically. It’s not always correct, and in fact it does limit the options we have quite dramatically, but for this project it’s more than good enough.
+
+Tip: If you want an overview of what the various algorithms do, I have a talk just for you called Create ML for Everyone – it’s on YouTube at https://youtu.be/a905KIBw1hs
+
+When you’re ready, click the Train button in the window title bar. After a couple of seconds – our data is pretty small! – it will complete, and you’ll see a big checkmark telling you that everything went to plan.
+
+To see how the training went, select the Evaluation tab then choose Validation to see some result metrics. The value we care about is called Root Mean Squared Error, and you should get a value around about 170. This means on average the model was able to predict suggested accurate sleep time with an error of only 170 seconds, or three minutes.
+
+Tip: Create ML provides us with both Training and Validation statistics, and both are important. When we asked it to train using our data, it automatically split the data up: some to use for training its machine learning model, but then it held back a chunk for validation. This validation data is then used to check its model: it makes a prediction based on the input, then checks how far that prediction was off the real value that came from the data.
+
+Even better, if you go to the Output tab you’ll see an our finished model has a file size of 544 bytes or so. Create ML has taken 180KB of data, and condensed it down to just 544 bytes – almost nothing.
+
+Now, 544 bytes sounds tiny, I know, but it’s worth adding that almost all of those bytes are metadata: the author name is in there, along with the names of all the fields: wake, estimatedSleep, coffee, and actualSleep.
+
+The actual amount of space taken up by the hard data – how to predict the amount of required sleep based on our three variables – is well under 100 bytes. This is possible because Create ML doesn’t actually care what the values are, it only cares what the relationships are. So, it spent a couple of billion CPU cycles trying out various combinations of weights for each of the features to see which ones produce the closest value to the actual target, and once it knows the best algorithm it simply stores that.
+
+Now that our model is trained, I’d like you to press the Get button to export it to your desktop, so we can use it in code.
+
+Tip: If you want to try training again – perhaps to experiment with the various algorithms available to us – right-click on your model source in the left-hand window, then select Duplicate.
