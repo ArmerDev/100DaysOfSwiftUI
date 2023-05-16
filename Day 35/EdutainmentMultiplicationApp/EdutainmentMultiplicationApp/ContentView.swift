@@ -9,21 +9,42 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var numberOfQuestions = 10
-    var selectedTimesTable = 2
+    @State private var numberOfQuestions = 10
+    @State private var selectedTimesTable = 2
     @State private var someArray: [qAndA] = []
+    @State private var showingSettings = true
+    
     
     var body: some View {
-        List {
-            ForEach(someArray) { array in
-                HStack {
-                    Text(array.question)
-                    Spacer()
+        ZStack {
+            
+            LinearGradient(colors: [.blue, .black], startPoint: .topLeading, endPoint: .bottomTrailing)
+                .ignoresSafeArea()
+            
+            if showingSettings {
+                VStack {
+                    Text("Settings")
+                        .font(.largeTitle.bold())
                     
+                    Stepper("\(selectedTimesTable) Times Table", value: $selectedTimesTable, in: 2...12)
+                    
+                    Stepper("\(numberOfQuestions) Questions", value: $numberOfQuestions, in: 5...15, step: 5)
+                    
+                    Button("Play") {
+                        createQuestions()
+                        showingSettings.toggle()
+                    }
+                    .buttonStyle(.borderedProminent)
                 }
+                .padding()
+                .background(.ultraThinMaterial)
+                .cornerRadius(15)
+                .padding()
+            } else {
+                Text("Insert Questions Here...")
+                    .foregroundColor(.white)
             }
         }
-        .onAppear(perform: createQuestions)
         
     }
     
