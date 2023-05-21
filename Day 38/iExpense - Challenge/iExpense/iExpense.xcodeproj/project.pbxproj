@@ -12,6 +12,11 @@
 		18F8D5F32A18157500FA21CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18F8D5F22A18157500FA21CE /* Assets.xcassets */; };
 		18F8D5F62A18157500FA21CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18F8D5F52A18157500FA21CE /* Preview Assets.xcassets */; };
 		18F8D5FD2A18159F00FA21CE /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8D5FC2A18159F00FA21CE /* AddView.swift */; };
+		18F8D5FF2A1AB55200FA21CE /* FormatStyle-LocalCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8D5FE2A1AB55200FA21CE /* FormatStyle-LocalCurrency.swift */; };
+		18F8D6012A1AB6C400FA21CE /* View-ExpenseStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8D6002A1AB6C400FA21CE /* View-ExpenseStyling.swift */; };
+		18F8D6032A1ABA9300FA21CE /* ExpenseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8D6022A1ABA9300FA21CE /* ExpenseSection.swift */; };
+		18F8D6052A1ABD8700FA21CE /* ExpenseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8D6042A1ABD8700FA21CE /* ExpenseItem.swift */; };
+		18F8D6072A1ABDAC00FA21CE /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8D6062A1ABDAC00FA21CE /* Expenses.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +26,11 @@
 		18F8D5F22A18157500FA21CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18F8D5F52A18157500FA21CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		18F8D5FC2A18159F00FA21CE /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		18F8D5FE2A1AB55200FA21CE /* FormatStyle-LocalCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormatStyle-LocalCurrency.swift"; sourceTree = "<group>"; };
+		18F8D6002A1AB6C400FA21CE /* View-ExpenseStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-ExpenseStyling.swift"; sourceTree = "<group>"; };
+		18F8D6022A1ABA9300FA21CE /* ExpenseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseSection.swift; sourceTree = "<group>"; };
+		18F8D6042A1ABD8700FA21CE /* ExpenseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseItem.swift; sourceTree = "<group>"; };
+		18F8D6062A1ABDAC00FA21CE /* Expenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expenses.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +65,12 @@
 			children = (
 				18F8D5EE2A18157200FA21CE /* iExpenseApp.swift */,
 				18F8D5F02A18157200FA21CE /* ContentView.swift */,
+				18F8D6062A1ABDAC00FA21CE /* Expenses.swift */,
+				18F8D6042A1ABD8700FA21CE /* ExpenseItem.swift */,
+				18F8D6022A1ABA9300FA21CE /* ExpenseSection.swift */,
+				18F8D5FE2A1AB55200FA21CE /* FormatStyle-LocalCurrency.swift */,
 				18F8D5FC2A18159F00FA21CE /* AddView.swift */,
+				18F8D6002A1AB6C400FA21CE /* View-ExpenseStyling.swift */,
 				18F8D5F22A18157500FA21CE /* Assets.xcassets */,
 				18F8D5F42A18157500FA21CE /* Preview Content */,
 			);
@@ -140,9 +155,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F8D6052A1ABD8700FA21CE /* ExpenseItem.swift in Sources */,
 				18F8D5F12A18157200FA21CE /* ContentView.swift in Sources */,
 				18F8D5EF2A18157200FA21CE /* iExpenseApp.swift in Sources */,
 				18F8D5FD2A18159F00FA21CE /* AddView.swift in Sources */,
+				18F8D6072A1ABDAC00FA21CE /* Expenses.swift in Sources */,
+				18F8D5FF2A1AB55200FA21CE /* FormatStyle-LocalCurrency.swift in Sources */,
+				18F8D6032A1ABA9300FA21CE /* ExpenseSection.swift in Sources */,
+				18F8D6012A1AB6C400FA21CE /* View-ExpenseStyling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
