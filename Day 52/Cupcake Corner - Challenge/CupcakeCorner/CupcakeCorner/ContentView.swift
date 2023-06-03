@@ -14,7 +14,7 @@ struct ContentView: View {
         NavigationView {
             Form {
                 Section {
-                    Picker("Select your cake type", selection: $order.type) {
+                    Picker("Select your cake type", selection: $order.data.type) {
                         ForEach(SharedOrder.types.indices) {
                             Text(SharedOrder.types[$0])
                         }
@@ -26,12 +26,14 @@ struct ContentView: View {
                 Section {
                     Toggle("Any special requests?", isOn: $order.data.specialRequestEnabled.animation())
                     
-                    if order.specialRequestEnabled {
+                    if order.data.specialRequestEnabled {
                         Toggle("Add extra frosting", isOn: $order.data.extraFrosting)
                         
                         Toggle("Add extra sprinkles", isOn: $order.data.addSprinkles)
                     }
                 }
+                
+               
                 
                 Section {
                     NavigationLink {
