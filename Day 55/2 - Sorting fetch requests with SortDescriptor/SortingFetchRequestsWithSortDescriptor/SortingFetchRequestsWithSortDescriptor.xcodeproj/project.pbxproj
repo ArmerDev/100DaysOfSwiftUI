@@ -64,11 +64,11 @@
 			isa = PBXGroup;
 			children = (
 				18A4A0B12A2F9A3800D47864 /* SortingFetchRequestsWithSortDescriptorApp.swift */,
-				18A4A0B32A2F9A3800D47864 /* ContentView.swift */,
-				18A4A0BF2A2F9A5F00D47864 /* Bookworm.xcdatamodeld */,
 				18A4A0C22A2F9A6D00D47864 /* AddBookView.swift */,
-				18A4A0C42A2F9A8500D47864 /* DetailView.swift */,
+				18A4A0BF2A2F9A5F00D47864 /* Bookworm.xcdatamodeld */,
+				18A4A0B32A2F9A3800D47864 /* ContentView.swift */,
 				18A4A0C62A2F9A9500D47864 /* DataController.swift */,
+				18A4A0C42A2F9A8500D47864 /* DetailView.swift */,
 				18A4A0C82A2F9AAB00D47864 /* EmojiRatingView.swift */,
 				18A4A0CA2A2F9AB800D47864 /* RatingView.swift */,
 				18A4A0B52A2F9A3C00D47864 /* Assets.xcassets */,
