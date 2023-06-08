@@ -95,6 +95,8 @@ struct ContentView: View {
             let book = books[offset]
             
             // delete it from the context
+            moc.delete(book)
+            
         }
         
         // save the context
