@@ -6,15 +6,28 @@
 //
 
 import SwiftUI
+import CoreData
 
-struct FilteredList: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+enum FilterType: String {
+    case beginsWith = "BEGINSWITH"
+    case contains = "CONTAINS[c]"
 }
 
-struct FilteredList_Previews: PreviewProvider {
-    static var previews: some View {
-        FilteredList()
+struct FilteredList<T: NSManagedObject, Content:View>: View {
+    
+    @FetchRequest var fetchRequest: FetchedResults<T>
+    
+    let content: (T) -> Content
+
+    var body: some View {
+        List(fetchRequest, id: \.self) { item in
+            self.content(item)
+        }
+    }
+    
+    init(type: FilterType = .contains, filterKey: String, filterValue: String, sortDescriptors: [SortDescriptor<T>] = [], @ViewBuilder content: @escaping (T) -> Content) {
+        _fetchRequest = FetchRequest<T>(sortDescriptors: sortDescriptors, predicate: NSPredicate(format: "%K \(type.rawValue) %@", filterKey, filterValue))
+        self.content = content
+        
     }
 }
