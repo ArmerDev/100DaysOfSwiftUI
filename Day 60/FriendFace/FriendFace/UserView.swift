@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct UserView: View {
     let user: User
 
