@@ -11,7 +11,7 @@ import SwiftUI
 struct IntegratingCoreImageWithSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView7()
         }
     }
 }
