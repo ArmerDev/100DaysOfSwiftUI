@@ -11,7 +11,7 @@ import SwiftUI
 struct AddingUserLocationsToAMapApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView3()
         }
     }
 }
