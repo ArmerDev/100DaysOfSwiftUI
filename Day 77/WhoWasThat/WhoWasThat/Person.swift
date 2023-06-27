@@ -7,8 +7,13 @@
 
 import SwiftUI
 
-struct Person: Identifiable {
-    let id = UUID()
+struct Person: Identifiable, Codable {
+    var id = UUID()
     let name: String
-    let picture: UIImage?
+    let picture: Data
+    
+    init(name: String, picture: UIImage) {
+        self.name = name
+        self.picture = picture.pngData()!
+    }
 }

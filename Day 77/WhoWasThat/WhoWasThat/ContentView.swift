@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-// TODO: Add Saving 
-
 struct ContentView: View {
     
     @State private var inputImage: UIImage?
@@ -21,20 +19,22 @@ struct ContentView: View {
         people.sorted { $0.name < $1.name }
     }
     
+    let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPeople")
+    
     var body: some View {
         NavigationStack {
             List {
                 ForEach(sortedPeople) { person in
                     
                     NavigationLink {
-                        Image(uiImage: person.picture!)
+                        Image(uiImage: UIImage(data: person.picture)!)
                             .resizable()
                             .scaledToFit()
                             .navigationTitle(person.name)
                             .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         HStack {
-                            Image(uiImage: person.picture!)
+                            Image(uiImage: UIImage(data: person.picture)!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 75, height: 75)
@@ -42,9 +42,8 @@ struct ContentView: View {
                             Text(person.name)
                         }
                     }
-
-                    
                 }
+                .onDelete(perform: removeRows)
             }
             .navigationTitle("Who was that?")
             .toolbar {
@@ -62,12 +61,38 @@ struct ContentView: View {
                 TextField("Person's name", text: $name)
                 Button("Save") {
                     withAnimation {
-                        people.append(Person(name: name, picture: inputImage))
+                        people.append(Person(name: name, picture: inputImage!))
                         name = ""
+                        save()
                     }
                 }
             }
+            .onAppear { load() }
         }
+    }
+    
+    func load() {
+        do {
+            let data = try Data(contentsOf: savePath)
+            people = try JSONDecoder().decode([Person].self, from: data)
+        } catch {
+            people = []
+        }
+    }
+    
+    func save() {
+        do {
+            let data = try JSONEncoder().encode(people)
+            try data.write(to: savePath, options: [.atomic, .completeFileProtection])
+        } catch {
+            print("Unable to save data.")
+        }
+    }
+    
+    func removeRows(at offsets: IndexSet) {
+        people = people.sorted { $0.name < $1.name }
+        people.remove(atOffsets: offsets)
+        save()
     }
 }
 
