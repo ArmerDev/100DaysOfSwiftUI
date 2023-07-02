@@ -32,6 +32,7 @@ class Prospect: Identifiable, Codable {
     func toggle(_ prospect: Prospect) {
         objectWillChange.send()
         prospect.isContacted.toggle()
+        save()
     }
     
     /*
