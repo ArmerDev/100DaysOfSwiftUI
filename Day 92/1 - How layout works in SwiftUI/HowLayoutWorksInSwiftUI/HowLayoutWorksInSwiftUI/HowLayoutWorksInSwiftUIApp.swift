@@ -1,0 +1,17 @@
+//
+//  HowLayoutWorksInSwiftUIApp.swift
+//  HowLayoutWorksInSwiftUI
+//
+//  Created by James Armer on 09/07/2023.
+//
+
+import SwiftUI
+
+@main
+struct HowLayoutWorksInSwiftUIApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView5()
+        }
+    }
+}
