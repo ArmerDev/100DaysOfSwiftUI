@@ -8,48 +8,123 @@
 import SwiftUI
 
 struct ContentView: View {
-    var numberOfDice = 30
+    let diceTypes = [4, 6, 8, 10, 12, 20, 100]
     
-    let columns = [
-            GridItem(.adaptive(minimum: 80))
-        ]
+    @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
+    
+    @AppStorage("selectedDiceType") var selectedDiceType = 6
+    @AppStorage("numberToRoll") var numberToRoll = 4
+    
+    @State private var currentResult = DiceResult(type: 0, number: 0)
+    
+    let timer = Timer.publish(every: 0.1, tolerance: 0.1, on: .main, in: .common).autoconnect()
+    @State private var stoppedDice = 0
+    
+    @State private var feedback = UIImpactFeedbackGenerator(style: .rigid)
+    
+    let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedRolls.json")
+    @State private var savedResults = [DiceResult]()
+    
+    let columns: [GridItem] = [
+        .init(.adaptive(minimum: 60))
+    ]
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                Spacer()
+        NavigationView {
+            Form {
+                Section {
+                    Picker("Type of dice", selection: $selectedDiceType) {
+                        ForEach(diceTypes, id: \.self) { type in
+                            Text("D\(type)")
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    
+                    Stepper("Number of dice: \(numberToRoll)", value: $numberToRoll, in: 1...20)
+                    
+                    Button("Roll them!", action: rollDice)
+                } footer: {
+                    LazyVGrid(columns: columns) {
+                        ForEach(0..<currentResult.rolls.count, id: \.self) { rollNumber in
+                            Text(String(currentResult.rolls[rollNumber]))
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .aspectRatio(1, contentMode: .fit)
+                                .foregroundColor(.black)
+                                .background(.white)
+                                .cornerRadius(10)
+                                .shadow(radius: 3)
+                                .font(.title)
+                                .padding(5)
+                        }
+                    }
+                    .accessibilityElement()
+                    .accessibilityLabel("Latest roll: \(currentResult.description)")
+                }
+                .disabled(stoppedDice < currentResult.rolls.count)
                 
-                LazyVGrid(columns: columns, spacing: 20){
-                    ForEach(0..<numberOfDice) { _ in
-                        Dice()
+                if savedResults.isEmpty == false {
+                    Section("Previous results") {
+                        ForEach(savedResults) { result in
+                            VStack(alignment: .leading) {
+                                Text("\(result.number) x D\(result.type)")
+                                    .font(.headline)
+                                
+                                Text(result.rolls.map(String.init).joined(separator: ", "))
+                            }
+                            .accessibilityElement()
+                            .accessibilityLabel("\(result.number) D\(result.type), \(result.description)")
+                        }
                     }
                 }
-                
-                Spacer()
-                Button("Roll Dice") {
-                    // roll dice
-                }
-                .buttonStyle(.borderedProminent)
-                
             }
-            .navigationTitle("DiceRoll")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        // settings
-                    } label: {
-                        Label("Settings", systemImage: "gear")
-                    }
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        // History
-                    } label: {
-                        Label("History", systemImage: "clock")
-                    }
-                }
+            .navigationTitle("High Rollers")
+            .onReceive(timer) {  date in
+                updateDice()
             }
+            .onAppear(perform: load)
+        }
+    }
+    
+    func rollDice() {
+        currentResult = DiceResult(type: selectedDiceType, number: numberToRoll)
+        
+        if voiceOverEnabled {
+            stoppedDice = numberToRoll
+            savedResults.insert(currentResult, at: 0)
+            save()
+        } else {
+            stoppedDice = -20
+        }
+    }
+    
+    func updateDice() {
+        guard stoppedDice < currentResult.rolls.count else { return }
+        
+        for i in stoppedDice..<numberToRoll {
+            if i < 0 { continue }
+            currentResult.rolls[i] = Int.random(in: 1...selectedDiceType)
+            feedback.impactOccurred()
+        }
+        
+        stoppedDice += 1
+        
+        if stoppedDice == numberToRoll {
+            savedResults.insert(currentResult, at: 0)
+            save()
+        }
+    }
+    
+    func load() {
+        if let data = try? Data(contentsOf: savePath) {
+            if let results = try? JSONDecoder().decode([DiceResult].self, from: data) {
+                savedResults = results
+            }
+        }
+    }
+    
+    func save() {
+        if let data = try? JSONEncoder().encode(savedResults) {
+            try? data.write(to: savePath, options: [.atomic, .completeFileProtection])
         }
     }
 }
@@ -60,74 +135,3 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
-
-//struct ContentView: View {
-//    @State var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-//    @State private var rollTotal: Int? = nil
-//    @State private var diceImage: String? = nil
-//    @State private var rollingCounter = 0
-//    @State private var speed: rollSpeed = .fast
-//    @State private var speedValue: Double = 0.1
-//
-//    init() {
-//        _timer = State(initialValue: Timer.publish(every: speedValue, on: .main, in: .common).autoconnect())
-//    }
-//
-//    enum rollSpeed: Double {
-//        case fast = 0.1
-//        case medium = 0.5
-//        case slow = 0.9
-//    }
-//
-//    var body: some View {
-//        VStack {
-//            if let total = rollTotal {
-//                Text("\(total)")
-//                    .font(.largeTitle)
-//            } else {
-//                Text(" ")
-//                    .font(.largeTitle)
-//            }
-//
-//            Spacer()
-//
-//            if let image = diceImage {
-//                Image(image)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 100, height: 100)
-//            }
-//
-//            Spacer()
-//
-//            Button("Roll Dice") {
-//                rollingCounter = 0
-//                timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-//            }
-//            .buttonStyle(.borderedProminent)
-//            .onReceive(timer) { _ in
-//                rollDice()
-//            }
-//        }
-//        .padding()
-//    }
-//
-//    func rollDice() {
-//
-//        speedValue += 0.05
-//
-//        rollingCounter += 1
-//
-//        if rollingCounter == 10 {
-//            speed = .medium
-//        } else if rollingCounter == 20 {
-//            speed = .slow
-//        } else if rollingCounter == 30 {
-//            self.timer.upstream.connect().cancel()
-//        }
-//
-//        rollTotal = Int.random(in: 1...6)
-//        diceImage = "\(rollTotal!)"
-//    }
-//}
