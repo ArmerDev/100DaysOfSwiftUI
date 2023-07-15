@@ -17,6 +17,16 @@ struct DiceResult: Identifiable, Codable {
         rolls.map(String.init).joined(separator: ", ")
     }
     
+    var rollTotal: Int {
+        var total = 0
+        
+        for roll in rolls {
+            total += roll
+        }
+        
+        return total
+    }
+    
     init(type: Int, number: Int) {
         self.type = type
         self.number = number

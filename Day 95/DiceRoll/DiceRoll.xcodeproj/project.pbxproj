@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		181597922A6181EE002B62E6 /* DiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181597912A6181EE002B62E6 /* DiceResult.swift */; };
 		1823E8972A619601001C5689 /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823E8962A619601001C5689 /* FileManager-DocumentsDirectory.swift */; };
+		187E90552A635AE600C40F9E /* ShakeGestureExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187E90542A635AE600C40F9E /* ShakeGestureExtensions.swift */; };
 		18C44F172A5F4638000E0212 /* DiceRollApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C44F162A5F4638000E0212 /* DiceRollApp.swift */; };
 		18C44F192A5F4638000E0212 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C44F182A5F4638000E0212 /* ContentView.swift */; };
 		18C44F1B2A5F463F000E0212 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C44F1A2A5F463F000E0212 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		181597912A6181EE002B62E6 /* DiceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceResult.swift; sourceTree = "<group>"; };
 		1823E8962A619601001C5689 /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
+		187E90542A635AE600C40F9E /* ShakeGestureExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeGestureExtensions.swift; sourceTree = "<group>"; };
 		18C44F132A5F4638000E0212 /* DiceRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiceRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C44F162A5F4638000E0212 /* DiceRollApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollApp.swift; sourceTree = "<group>"; };
 		18C44F182A5F4638000E0212 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			children = (
 				18C44F162A5F4638000E0212 /* DiceRollApp.swift */,
 				18C44F182A5F4638000E0212 /* ContentView.swift */,
+				187E90542A635AE600C40F9E /* ShakeGestureExtensions.swift */,
 				1823E8962A619601001C5689 /* FileManager-DocumentsDirectory.swift */,
 				181597912A6181EE002B62E6 /* DiceResult.swift */,
 				18C44F1A2A5F463F000E0212 /* Assets.xcassets */,
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187E90552A635AE600C40F9E /* ShakeGestureExtensions.swift in Sources */,
 				18C44F192A5F4638000E0212 /* ContentView.swift in Sources */,
 				1823E8972A619601001C5689 /* FileManager-DocumentsDirectory.swift in Sources */,
 				18C44F172A5F4638000E0212 /* DiceRollApp.swift in Sources */,
